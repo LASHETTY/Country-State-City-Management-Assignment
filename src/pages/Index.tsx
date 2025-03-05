@@ -5,7 +5,7 @@ import { Country, State } from '@/lib/types';
 import CountryList from '@/components/CountryList';
 import StateList from '@/components/StateList';
 import CityList from '@/components/CityList';
-import { toast } from '@/components/ui/sonner';
+import { toast } from 'sonner';
 
 const Index = () => {
   const [countries, setCountries] = useState<Country[]>([]);
