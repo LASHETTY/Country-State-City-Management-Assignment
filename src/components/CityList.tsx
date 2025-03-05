@@ -7,7 +7,7 @@ import EmptyState from './EmptyState';
 import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Building, Plus, Trash } from 'lucide-react';
+import { ArrowLeft, Building, Edit, Plus, Trash } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
@@ -16,6 +16,7 @@ interface CityListProps {
   state: State;
   onBackToStates: () => void;
   onAddCity: (countryId: string, stateId: string, name: string) => void;
+  onEditCity: (countryId: string, stateId: string, cityId: string, name: string) => void;
   onDeleteCity: (countryId: string, stateId: string, cityId: string) => void;
 }
 
@@ -24,11 +25,14 @@ const CityList: React.FC<CityListProps> = ({
   state,
   onBackToStates,
   onAddCity,
+  onEditCity,
   onDeleteCity
 }) => {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [newCityName, setNewCityName] = useState('');
+  const [editCityName, setEditCityName] = useState('');
   const [selectedCityId, setSelectedCityId] = useState<string | null>(null);
   const [selectedCityName, setSelectedCityName] = useState<string>('');
 
@@ -40,11 +44,25 @@ const CityList: React.FC<CityListProps> = ({
     }
   };
 
+  const handleEditConfirm = () => {
+    if (selectedCityId && editCityName.trim()) {
+      onEditCity(country.id, state.id, selectedCityId, editCityName.trim());
+      setEditCityName('');
+      setIsEditDialogOpen(false);
+    }
+  };
+
   const handleDeleteConfirm = () => {
     if (selectedCityId) {
       onDeleteCity(country.id, state.id, selectedCityId);
       setIsDeleteDialogOpen(false);
     }
+  };
+
+  const openEditDialog = (cityId: string, cityName: string) => {
+    setSelectedCityId(cityId);
+    setEditCityName(cityName);
+    setIsEditDialogOpen(true);
   };
 
   const openDeleteDialog = (cityId: string, cityName: string) => {
@@ -109,14 +127,22 @@ const CityList: React.FC<CityListProps> = ({
                 </div>
               </CardContent>
               <CardFooter className="pt-2 pb-3">
-                <ActionButton
-                  onClick={() => openDeleteDialog(city.id, city.name)}
-                  icon={<Trash className="h-4 w-4" />}
-                  variant="outline"
-                  size="sm"
-                  label="Delete"
-                  className="ml-auto"
-                />
+                <div className="flex gap-2 ml-auto">
+                  <ActionButton
+                    onClick={() => openEditDialog(city.id, city.name)}
+                    icon={<Edit className="h-4 w-4" />}
+                    variant="outline"
+                    size="sm"
+                    tooltip="Edit City"
+                  />
+                  <ActionButton
+                    onClick={() => openDeleteDialog(city.id, city.name)}
+                    icon={<Trash className="h-4 w-4" />}
+                    variant="outline"
+                    size="sm"
+                    tooltip="Delete City"
+                  />
+                </div>
               </CardFooter>
             </Card>
           ))}
@@ -144,6 +170,32 @@ const CityList: React.FC<CityListProps> = ({
             </Button>
             <Button type="submit" onClick={handleAddConfirm}>
               Add City
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Edit City Dialog */}
+      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+        <DialogContent className="sm:max-w-md animate-scale-in">
+          <DialogHeader>
+            <DialogTitle>Edit City</DialogTitle>
+          </DialogHeader>
+          <div className="py-4">
+            <Input
+              value={editCityName}
+              onChange={(e) => setEditCityName(e.target.value)}
+              placeholder="Enter new city name"
+              className="w-full"
+              autoFocus
+            />
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button type="submit" onClick={handleEditConfirm}>
+              Update City
             </Button>
           </DialogFooter>
         </DialogContent>

@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Country, State, City } from '@/lib/types';
@@ -166,15 +165,15 @@ export function useEntityManagement() {
     toast.success(`City "${name}" has been added`);
   };
 
-  const handleDeleteCity = (countryId: string, stateId: string, cityId: string) => {
+  const handleEditCity = (countryId: string, stateId: string, cityId: string, name: string) => {
     const updatedCountries = countries.map(country => {
       if (country.id === countryId) {
         const updatedStates = country.states.map(state => {
           if (state.id === stateId) {
-            return {
-              ...state,
-              cities: state.cities.filter(city => city.id !== cityId)
-            };
+            const updatedCities = state.cities.map(city => 
+              city.id === cityId ? { ...city, name } : city
+            );
+            return { ...state, cities: updatedCities };
           }
           return state;
         });
@@ -197,6 +196,36 @@ export function useEntityManagement() {
             setSelectedState(updatedState);
           }
         }
+      }
+    }
+    
+    toast.success(`City has been updated to "${name}"`);
+  };
+
+  const handleDeleteCity = (countryId: string, stateId: string, cityId: string) => {
+    const updatedCountries = countries.map(country => {
+      if (country.id === countryId) {
+        const updatedStates = country.states.map(state => {
+          if (state.id === stateId) {
+            return {
+              ...state,
+              cities: state.cities.filter(city => city.id !== cityId)
+            };
+          }
+          return state;
+        });
+        return { ...country, states: updatedStates };
+      }
+      return country;
+    });
+    
+    setCountries(updatedCountries);
+    
+    // Update selected country if it's the one being modified
+    if (selectedCountry && selectedCountry.id === countryId) {
+      const updatedCountry = updatedCountries.find(c => c.id === countryId);
+      if (updatedCountry) {
+        setSelectedCountry(updatedCountry);
       }
     }
     
@@ -239,6 +268,7 @@ export function useEntityManagement() {
     handleEditState,
     handleDeleteState,
     handleAddCity,
+    handleEditCity,
     handleDeleteCity,
     handleSelectCountry,
     handleSelectState,

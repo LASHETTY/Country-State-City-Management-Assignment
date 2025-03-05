@@ -18,6 +18,7 @@ const Index = () => {
     handleEditState,
     handleDeleteState,
     handleAddCity,
+    handleEditCity,
     handleDeleteCity,
     handleSelectCountry,
     handleSelectState,
@@ -48,6 +49,7 @@ const Index = () => {
             state={selectedState}
             onBackToStates={handleBackToStates}
             onAddCity={handleAddCity}
+            onEditCity={handleEditCity}
             onDeleteCity={handleDeleteCity}
           />
         );
