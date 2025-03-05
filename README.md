@@ -5,7 +5,7 @@
 
 This is a hierarchical management system for geographic entities (Countries, States, and Cities). The application allows users to create, read, update, and delete geographic entities in a nested structure.
 
-**URL**: https://lovable.dev/projects/a1c23716-1a80-4a40-ae01-a7f1a7c702e0
+**URL**: https://country-state-city-management-assignment.vercel.app
 
 ## Features
 
@@ -47,16 +47,6 @@ This project is built with modern web technologies:
    - Add, edit, or delete cities
    - Use the breadcrumb to navigate back to states or countries
 
-## How to Edit This Code
-
-There are several ways of editing your application.
-
-### Use Lovable
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/a1c23716-1a80-4a40-ae01-a7f1a7c702e0) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
 ### Use your preferred IDE
 
 If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
@@ -70,10 +60,10 @@ Follow these steps:
 git clone <YOUR_GIT_URL>
 
 # Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+cd <CountryStateCityManagementAssignment>
 
 # Step 3: Install the necessary dependencies.
-npm i
+npm install
 
 # Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
@@ -92,14 +82,6 @@ npm run dev
 - Select the "Codespaces" tab.
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## Deployment
-
-Simply open [Lovable](https://lovable.dev/projects/a1c23716-1a80-4a40-ae01-a7f1a7c702e0) and click on Share -> Publish.
-
-### Custom Domains
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain, we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
 
 ## Project Structure
 
