@@ -1,20 +1,63 @@
-# Welcome to your Lovable project
 
-## Project info
+# Geographic Entity Manager
+
+## Project Overview
+
+This is a hierarchical management system for geographic entities (Countries, States, and Cities). The application allows users to create, read, update, and delete geographic entities in a nested structure.
 
 **URL**: https://lovable.dev/projects/a1c23716-1a80-4a40-ae01-a7f1a7c702e0
 
-## How can I edit this code?
+## Features
+
+- **Country Management**: Add, edit, and delete countries
+- **State Management**: For each country, add, edit, and delete states
+- **City Management**: For each state, add, edit, and delete cities
+- **Hierarchical Structure**: Navigate through the entity hierarchy with breadcrumbs
+- **Confirmation Dialogs**: Ensure users confirm before making destructive changes
+- **Responsive Design**: Works on various screen sizes
+
+## Technologies Used
+
+This project is built with modern web technologies:
+
+- **React**: UI component library
+- **TypeScript**: For type-safe code
+- **Vite**: Fast build tool and development server
+- **shadcn/ui**: Component library for consistent UI
+- **Tailwind CSS**: Utility-first CSS framework
+- **React Router**: For navigation
+- **React Query**: For data management
+
+## How to Use the Application
+
+1. **Managing Countries**:
+   - View the list of countries on the main page
+   - Add a new country using the "Add Country" button
+   - Edit or delete a country using the respective buttons
+   - Click on a country to view its states
+
+2. **Managing States**:
+   - After selecting a country, view its states
+   - Add, edit, or delete states
+   - Click on a state to view its cities
+   - Use the breadcrumb to navigate back to countries
+
+3. **Managing Cities**:
+   - After selecting a state, view its cities
+   - Add, edit, or delete cities
+   - Use the breadcrumb to navigate back to states or countries
+
+## How to Edit This Code
 
 There are several ways of editing your application.
 
-**Use Lovable**
+### Use Lovable
 
 Simply visit the [Lovable Project](https://lovable.dev/projects/a1c23716-1a80-4a40-ae01-a7f1a7c702e0) and start prompting.
 
 Changes made via Lovable will be committed automatically to this repo.
 
-**Use your preferred IDE**
+### Use your preferred IDE
 
 If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
@@ -36,13 +79,13 @@ npm i
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Edit a file directly in GitHub
 
 - Navigate to the desired file(s).
 - Click the "Edit" button (pencil icon) at the top right of the file view.
 - Make your changes and commit the changes.
 
-**Use GitHub Codespaces**
+### Use GitHub Codespaces
 
 - Navigate to the main page of your repository.
 - Click on the "Code" button (green button) near the top right.
@@ -50,20 +93,17 @@ npm run dev
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
+## Deployment
 
 Simply open [Lovable](https://lovable.dev/projects/a1c23716-1a80-4a40-ae01-a7f1a7c702e0) and click on Share -> Publish.
 
-## I want to use a custom domain - is that possible?
+### Custom Domains
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+We don't support custom domains (yet). If you want to deploy your project under your own domain, we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+
+## Project Structure
+
+- `src/pages`: Main application pages
+- `src/components`: Reusable UI components
+- `src/hooks`: Custom React hooks for state management
+- `src/lib`: Type definitions and utility functions
